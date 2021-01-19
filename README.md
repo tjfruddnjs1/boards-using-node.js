@@ -18,7 +18,7 @@
 npm init --yes
 ```
 
-> [package.json]() : 프로젝트 설치 패키지
+> [package.json](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/package.json) : 프로젝트 설치 패키지
 
 ```
 npm i --save ejs express express-session method-override sequelize sequelize-cli myslq2 morgan
@@ -37,12 +37,12 @@ npm i -D nodemon
 
 > 2. `app.js에 패키지 기본 설정`
 
-- [app.js]()
+- [app.js](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/app.js)
 - 사용 모듈 express, morgan(추가 log), method-Override(method 확장을 위한), sequelize(database) 설정
-- `router 설정` > homeRouter를 메인 페이지로 > [routes/home.js]()
+- `router 설정` > homeRouter를 메인 페이지로 > [routes/home.js](https://github.com/tjfruddnjs1/boards-using-node.js/tree/main/routes)
 - error처리 및 포트(3000) 연결
 
-> 3. [views/partials/head.ejs]()
+> 3. [views/partials/head.ejs](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/views/partials/head.ejs)
 
 - 주소록과 같이 부트스트랩 설정 및 css파일 적용은 같지만 `web font`설정하는 작업이 있다
 - 구글에서 제공하는 웹폰트를 https://fonts.google.com 에서 검색하여 사용할 수 있습니다.
@@ -50,15 +50,15 @@ npm i -D nodemon
 1. 폰트를 찾아 해당 폰트를 사용하고 싶다면 'Select this font` 클릭
 2. '1 family selected' 박스를 클릭시 `Embed Font`항목과 `Specify in CSS` 항목이 있는데 전자는 `font를 어떻게 내 프로젝트에 가져오는지를 설명(박스 안의 내용을 html head)에 넣어라`, 후자는 `css 파일에서 어떻게 해당 폰트를 사용할지`
 
-> 4. [views/partials/nav.ejs]()
+> 4. [views/partials/nav.ejs](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/views/partials/nav.ejs)
 
 - 네비게이션 메뉴는 주소록 만들기 예제와 구조가 같습니다.
 
-> 5. [views/home/welcome.ejs]()
+> 5. [views/home/welcome.ejs](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/views/home/welcome.ejs)
 
 - jumbotron이라는 class를 사용했는데 이는 bottstrap에서 제공하는 컴포넌트입니다. https://getbootstrap.com/docs/4.4/components/jubnotron 에서 자세한 설명을 볼수있습니다. 이처럼 bootstrap 사이트에서 맘에 드는 component가 있으면 가져다가 사용하면 됩니다.
 
-> 6. [public/css/marster.css]()
+> 6. [public/css/marster.css](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/public/css/master.css)
 
 - `Open Sans` 폰트를 body에다가 적용 > 이렇게 body에 css를 설정하면 전체 사이트에 적용
 
