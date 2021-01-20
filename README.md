@@ -73,7 +73,7 @@ npm i -D nodemon
 - 이제 게시판 CRUD를 만들텐데 두 파트로 나누어 2번 단계에서 back end를 3번 단계에서 front end 코드를 작성할 예정
 - 2번 단계에서 `Post(게시글) model을 만들고 backend CRUD`를 구현
 
-> 1. [models/post.js]() : DataBase Table Setting
+> 1. [models/post.js](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/models/post.js) : DataBase Table Setting
 
 - 4개의 컬럼으로 구성 > title, body, createdAt, updatedAt
 - `timestamps : true`를 통해 자동 생성할 수도 있지만 현재는 눈으로 컬럼을 확인할수 있게 직접 작성
@@ -82,7 +82,7 @@ npm i -D nodemon
 - `createdAt` : 생성일, date, default : Date.now
 - `updatedAt` : 업데이트 날짜, date
 
-> 2. [routes/posts.js]() : 7 standard actions 구현
+> 2. [routes/posts.js](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/routes/posts.js) : 7 standard actions 구현
 >    생성
 
 - New : 생성폼(from)을 사용자에게 보여주고,
@@ -103,7 +103,7 @@ npm i -D nodemon
 
 - 2번 단계에서 구현헀던 router들이 실제로 동작할 Front End를 작성
 
-> 1. [public/script.js]() : 서버에서 사용하는 코드가 아닌 client 브라우저에서 사용하게될 javascript 코드 > public 폴더에서 넣어 `head.ejs` 파일에 이 파일을 불러오는 코드가 작성
+> 1. [public/script.js](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/public/js/script.js) : 서버에서 사용하는 코드가 아닌 client 브라우저에서 사용하게될 javascript 코드 > public 폴더에서 넣어 `head.ejs` 파일에 이 파일을 불러오는 코드가 작성
 
 - `convertDate, convertDateTime` 함수가 하는일만 살펴보자 : 나머지 `get2digits, getDate, getTime` 함수는 위 두함수에서 사용되는 함수
 - `convertDate`함수 : html element 중에 `data-date`이 있는 것을 찾아 해당 데이터를 `년-월-일`의 형태로 변환해서 element의 텍스트 데이터로 넣습니다.
@@ -129,7 +129,7 @@ npm i -D nodemon
 <li calss="nav-item"><a href="/posts" class="nav-link">Board</a></li>
 ```
 
-> 2. [views/...]()
+> 2. [views/...](https://github.com/tjfruddnjs1/boards-using-node.js/tree/main/views)
 
 - `posts/index.ejs` : Post의 index를 table로 표시합니다.
 - <-- 1 --> : data-date가 element로 사용 > public/js/script.js에 의해 post.createdAt(게시물 작성시간)이 년-월-일 형태로 출력
@@ -142,7 +142,7 @@ npm i -D nodemon
 - data-date-time이 Created, Updated 옆의 element에 사용 > 게시물 작성된 시간, 수정된 시간이 `년-월-일 시:분:초` 형태로 출력
 - `posts/edit.ejs` : new와 구성이 비슷하지만 `form action에 ?_method=put` 을 통해 update > `method_override package`
 
-> 3. [public/css/master.css]()
+> 3. [public/css/master.css](https://github.com/tjfruddnjs1/boards-using-node.js/blob/main/public/css/master.css)
 
 - <-- 1 --> : ellipsis는 해당 element의 text가 너무 길 경우, 넘치는 text를 ...로 표시
 - <-- 2 --> : 이 부분이 없으면 게시물 본문의 줄바꿈(`/n`)이 표현되지 않습니다. 왜냐하면 HTML에서의 줄바꿈은 (`<br/>`)이기 때문이다. 해당 부분을 통해 `/n`이 제대로 줄바꿈을 표현할 수 있습니다.
