@@ -4,13 +4,14 @@ const methodOverride = require('method-override');
 
 const { sequelize } = require('./models');
 const homeRouter = require('./routes/home');
+const postsRouter = require('./routes/posts');
 
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
   .then(() => {
     console.log('데이터베이스 연결 성공');
   })
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
 app.use('/', homeRouter);
+app.use('/posts', postsRouter);
 
   app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
