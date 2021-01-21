@@ -23,8 +23,10 @@ router.route('/')
                password : req.body.password,
                name : req.body.name,
                email : req.body.email,
+               passwordConfirmation : req.body.passwordConfirmation,
             });
-            req.redirect('/users');
+
+            res.redirect('/users');
         }catch(err){
             console.error(err);
             next(err);
@@ -43,7 +45,7 @@ router.get('/new', async(req,res,next) =>{
 //edit
 router.get('/:username/edit', async(req,res,next)=>{
     try{
-        const user = await Post.findByPk(req.params.username);
+        const user = await User.findByPk(req.params.username);
         res.render('users/edit', {user : user});
     }catch(err){
         console.error(err);
@@ -55,7 +57,7 @@ router.route('/:username')
     //show
     .get(async (req,res,next)=>{
         try{
-            const user = await Post.findByPk(req.params.username);
+            const user = await User.findByPk(req.params.username);
             res.render('users/show', {user:user});
         }catch(err){
             console.error(err);
@@ -65,15 +67,24 @@ router.route('/:username')
     //update
     .put(async (req,res,next)=>{
         try{
-            Post.update({
+            User.update({
+                currentPassword : req.body.currentPassword,
+            },{
+                where : {username : req.body.username},
+            });
+
+            User.update({
                 username : req.body.username,
-                password : req.body.password,
                 name : req.body.name,
                 email : req.body.email,
+                newPassword : req.body.newPassword,
+                password : req.body.newPassword? req.body.newPassword : password,
+                passwordConfirmation : req.body.passwordConfirmation,
             },{
-                where : {username : req.params.username},
+                where : {username : req.body.username},
             });
-            res.redirect('/users');
+    
+            res.redirect('/users/'+ User.username);
         }catch(err){
             console.error(err);
             next(err);
@@ -82,7 +93,7 @@ router.route('/:username')
     //destory
     .delete(async(req,res,next)=>{
         try{
-            Post.destroy({
+            User.destroy({
                 where : {username:req.params.username},
             });
             res.redirect('/users');

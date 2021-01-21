@@ -10,19 +10,13 @@ module.exports = class User extends Sequelize.Model {
       password : {
         type: Sequelize.STRING(20),
         allowNull : false,
-        // validate : {
-        //     notNull : {
-        //         msg: 'A password id required'
-        //     },
-        //     notEmpty: {
-        //         ms: 'Please privides a password'
-        //     },
-        //     len:{
-        //         args: [8, 20],
-        //         msg: 'The password should be between 8 and 20 chracters'
-        //     },
-
-        // }
+        validate : {
+          isConfirm(value){
+            if(value != this.passwordConfirmation){
+              throw new Error('password confirmation does not matched!');
+            }
+          },
+        },
       }, 
       name : {
         type: Sequelize.STRING(20),
@@ -33,33 +27,40 @@ module.exports = class User extends Sequelize.Model {
         allowNull : true,
       },
       passwordConfirmation : {
-          type : Sequelize.VIRTUAL,
-          get : function(val)
-          validate : {
-              
-          },
+        type : Sequelize.VIRTUAL,
+        validate : {
+          isConfirm(value){
+            if(!value){
+              throw new Error('password confirmation is required!');
+            }
+          }
+        }
       },
       originalPassword : {
         type : Sequelize.VIRTUAL,
-
-        validate : {
-            
-        },
-    },
-    currentPassword : {
+      },
+      currentPassword : {
         type : Sequelize.VIRTUAL,
-
         validate : {
-            
-        },
-    },
-    newPassword : {
-        type : Sequelize.VIRTUAL,
-
-        validate : {
-            
-        },
-    },
+          isConfirm(value){
+            if(value != this.password){
+              throw new Error('Current Password is invalid!');
+            }else if(!value){
+              throw new Error('Current Password is required!');
+            }
+          }
+        }
+      },
+      newPassword : {
+          type : Sequelize.VIRTUAL,
+          validate : {
+            isConfirm(value){
+              if(value != this.passwordConfirmation){
+                throw new Error('Password Confirmation does not matched!');
+              }
+            }
+          }
+      },
     }, {
       sequelize,
       timestamps: false,

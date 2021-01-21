@@ -174,3 +174,8 @@ npm i -D nodemon
 <br>
 <img src="https://user-images.githubusercontent.com/41010744/105179005-1ca36d00-5b6c-11eb-8ea3-8a3e06f38ad9.png">
 <br>
+
+## 4. 게시판 - 회원가입
+
+- 회원가입 기능은 회원(user) model을 만들고 , CRUD 중 create, 즉 회원 데이터를 생성해 DB에 저장하는 것
+- 다만 `비밀번호`가 추가되는데, 이를 통해 로그인시 usernmae과 password가 일치하는지 user가 DB에 있는지를 확인 > 로그인은 이후 강의에서도 다룰 예정
